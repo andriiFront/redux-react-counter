@@ -4,13 +4,14 @@ import { increment, decrement, asyncIncrement } from './redux/actions'
 
 function App() {
   const counter = useSelector(state => state.counter)
+  const hider = useSelector(state => state.hideBtns)
   const dispatch = useDispatch()
 
   return (
     <div className="container pt-5">
       <h1 className="heading">
         <span>Redux</span>
-        <button className="btn btn-info" id="theme">Сменить тему</button>
+        <button disabled={hider} className="btn btn-info" id="theme">Сменить тему</button>
       </h1>
 
       <hr />
@@ -19,6 +20,7 @@ function App() {
         <div className="card-body">
           <h5 className="card-title">Счетчик: {counter}<span id="counter"></span></h5>
           <button
+            disabled={hider}
             onClick={() => dispatch(increment())} 
             className="btn btn-primary"
             id="add"
@@ -26,6 +28,7 @@ function App() {
             Добавить
           </button>
           <button
+            disabled={hider}
             onClick={() => dispatch(decrement())} 
             className="btn btn-danger"
             id="sub"
@@ -33,6 +36,7 @@ function App() {
             Убрать
           </button>
           <button
+            disabled={hider}
             onClick={() => dispatch(asyncIncrement())} 
             className="btn btn-success"
             id="async">

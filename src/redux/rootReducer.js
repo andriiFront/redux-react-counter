@@ -1,4 +1,9 @@
-import { INCREMENT, DECREMENT } from "./types"
+import {
+  INCREMENT,
+  DECREMENT,
+  ENABLE_BUTTONS,
+  DISABLE_BUTTONS
+} from "./types"
 import { combineReducers } from "redux"
 
 function counterReducer(state = 0, action) {
@@ -13,6 +18,20 @@ function counterReducer(state = 0, action) {
   return state
 }
 
+function hideBtnsReducer(state = false, action) {
+  switch(action.type) {
+    case ENABLE_BUTTONS:
+      return false
+    
+    case DISABLE_BUTTONS:
+      return true
+    
+    default:
+      return state
+  } 
+}
+
 export const rootReducer = combineReducers({
   counter: counterReducer,
+  hideBtns: hideBtnsReducer
 })
