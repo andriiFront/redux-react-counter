@@ -2,7 +2,8 @@ import {
   INCREMENT,
   DECREMENT,
   ENABLE_BUTTONS,
-  DISABLE_BUTTONS
+  DISABLE_BUTTONS,
+  TOGGLE_THEME
 } from "./types"
 import { combineReducers } from "redux"
 
@@ -31,7 +32,18 @@ function hideBtnsReducer(state = false, action) {
   } 
 }
 
+function themeReducer(state = false, action) {
+  switch(action.type) {
+    case TOGGLE_THEME:
+      return !state
+    
+    default:
+      return state
+  } 
+}
+
 export const rootReducer = combineReducers({
   counter: counterReducer,
-  hideBtns: hideBtnsReducer
+  hideBtns: hideBtnsReducer,
+  theme: themeReducer
 })

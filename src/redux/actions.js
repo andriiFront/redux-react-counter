@@ -2,7 +2,8 @@ import {
   INCREMENT,
   DECREMENT,
   ENABLE_BUTTONS,
-  DISABLE_BUTTONS
+  DISABLE_BUTTONS,
+  TOGGLE_THEME
 } from "./types";
 
 export function increment() {
@@ -36,5 +37,11 @@ export function enableButtons() {
 export function disableButtons() {
   return {
     type: DISABLE_BUTTONS
+  }
+}
+
+export function toggleTheme() {
+  return {
+    type: TOGGLE_THEME
   }
 }

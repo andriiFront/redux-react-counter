@@ -1,17 +1,30 @@
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement, asyncIncrement } from './redux/actions'
+import { increment, decrement, asyncIncrement, toggleTheme } from './redux/actions'
 
 function App() {
   const counter = useSelector(state => state.counter)
   const hider = useSelector(state => state.hideBtns)
+  const theme = useSelector(state => state.theme)
   const dispatch = useDispatch()
+  document.body.className = theme && 'dark';
+  
+  console.log(theme)
 
   return (
     <div className="container pt-5">
       <h1 className="heading">
         <span>Redux</span>
-        <button disabled={hider} className="btn btn-info" id="theme">Сменить тему</button>
+        <button
+          onClick={() => {
+            dispatch(toggleTheme())
+          }} 
+          disabled={hider}
+          className="btn btn-info"
+          id="theme"
+        >
+          Сменить тему
+        </button>
       </h1>
 
       <hr />
@@ -39,9 +52,10 @@ function App() {
             disabled={hider}
             onClick={() => dispatch(asyncIncrement())} 
             className="btn btn-success"
-            id="async">
-              Async
-            </button>
+            id="async"
+          >
+            Async
+          </button>
         </div>
       </div>
     </div>
