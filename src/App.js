@@ -1,6 +1,6 @@
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement } from './redux/actions'
+import { increment, decrement, asyncIncrement } from './redux/actions'
 
 function App() {
   const counter = useSelector(state => state.counter)
@@ -32,7 +32,12 @@ function App() {
           >
             Убрать
           </button>
-          <button className="btn btn-success" id="async">Async</button>
+          <button
+            onClick={() => dispatch(asyncIncrement())} 
+            className="btn btn-success"
+            id="async">
+              Async
+            </button>
         </div>
       </div>
     </div>
